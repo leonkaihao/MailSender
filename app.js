@@ -3,9 +3,11 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
+var jwt = require('json-web-token');
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
+var sessionRouter = require('./routes/sessions');
 
 var app = express();
 
@@ -18,9 +20,17 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
-
+app.use(function(req, res, next) {
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader('Access-Control-Allow-Methods', 'GET, POST');
+  res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type, Authorization');
+  next();
+});
 app.use('/', indexRouter);
+//Token should be verified every api request except create session
+app.use(sessionRouter.verify()); 
 app.use('/users', usersRouter);
+app.use('/sessions', sessionRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
