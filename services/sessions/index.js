@@ -14,7 +14,7 @@ var sessions = exports = module.exports = {
         this.datalist[token].timeout = setTimeout(function(obj, token) {
             delete obj[token];
         }, 1000*60*60,  self, token);
-        return uuid.v4()
+        return token;
     },
     //get session content object and refresh timeout
     getContent: function(token) {

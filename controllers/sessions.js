@@ -19,6 +19,7 @@ exports.verify = function(token, cb) {
     if (!data)
     {
         statusCode = 404;
+        result.code = 'e0004',
         result.message = "Invalid session";
     }
     result.usrData = data; //return back user session data

@@ -27,6 +27,7 @@ router.verify = function () {
 		} else {
 			sessions.verify(req.query.token, function (statusCode, result) {
 				if (statusCode >= 400) {
+					delete result.usrData;
 					res.status(statusCode).json(result);
 					return;
 				} else {

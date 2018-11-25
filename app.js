@@ -6,8 +6,9 @@ var logger = require('morgan');
 var jwt = require('json-web-token');
 
 var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
+//var usersRouter = require('./routes/users');
 var sessionRouter = require('./routes/sessions');
+var mailRouter = require('./routes/mails');
 
 var app = express();
 
@@ -27,10 +28,12 @@ app.use(function(req, res, next) {
   next();
 });
 app.use('/', indexRouter);
+
 //Token should be verified every api request except create session
 app.use(sessionRouter.verify()); 
-app.use('/users', usersRouter);
-app.use('/sessions', sessionRouter);
+//app.use('/users', usersRouter);
+app.use('/api/sessions', sessionRouter);
+app.use('/api/mails', mailRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
