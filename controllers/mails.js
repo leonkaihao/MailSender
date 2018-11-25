@@ -37,7 +37,7 @@ exports.postMails = function(token, mailObj, cb) {
             result.code = 'e0001',
             result.message = err.message;
         }        
-        result.info = results;
+        result.data = results;
         cb(statusCode, result);
     });
 };

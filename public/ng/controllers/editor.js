@@ -28,11 +28,19 @@ function ($scope, $rootScope, ApiService) {
 				mail: $scope.mailData
 			}
 		}
-		ApiService.post("/api/mails", obj, function(data) {
-			$scope.history.push($scope.mailData.from + " " + String(data.info));
+		ApiService.post("/api/mails", obj, function(result) {
+			let msg = $scope.mailData.from;
+			if (result.data) {
+				msg += ("" + String(result.data));
+			}
+
+			$scope.history.push(msg);
 		}, function (err){
-			alert(err);
-			$scope.history.push($scope.mailData.from + " " + err.message + " " + String(err.info));
+			let msg = $scope.mailData.from + " " + err.message;
+			if (err.data) {
+				msg += ("" + String(err.data));
+			}
+			$scope.history.push(msg);
 		});
 	};
 }]);
