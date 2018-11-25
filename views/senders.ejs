@@ -1,0 +1,36 @@
+
+<div class="row jumbotron" ng-controller="SendersCtrl">
+    <h4 class="col-12">Senders</h4>
+    <div class="col-6">
+        <ul class="list-group">
+            <li class="list-group-item d-flex justify-content-between align-items-center" ng-repeat="sender in senders">
+                {{$index}} {{sender.name}} {{sender.apiKey}} {{sender.domain}}
+                <span>
+                    <button class="btn btn-outline-secondary" type="button" ng-click="Delete($index)">Del</button>
+                </span>
+            </li>
+        </ul>
+        <p></p>
+        <form>
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <label class="input-group-text" for="sendersgroup">Providers</label>
+                </div>
+                <select class="custom-select" id="sendersgroup" ng-model="newSender.name">
+                    <option ng-repeat="provider in providers" value="{{provider}}">{{provider}}</option>
+                </select>
+            </div>
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <label class="input-group-text">User</label>
+                </div>
+                <input type="text" aria-label="API Key" class="form-control" ng-model="newSender.apiKey" placeholder="API Key">
+                <input type="text" aria-label="Domain" class="form-control" ng-model="newSender.domain" placeholder="Domain">
+                <div class="input-group-append">
+                    <button class="btn btn-outline-secondary" type="button" ng-click="Add()">Add</button>
+                </div>
+            </div>
+        </form>
+    </div>
+
+</div>

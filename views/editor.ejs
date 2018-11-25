@@ -1,0 +1,57 @@
+<div class="row jumbotron" ng-controller="EditorCtrl">
+    <h4 class="col-12">Mail Editor</h4>
+    <div class="col-6">
+        <form>
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <label class="input-group-text">From</label>
+                </div>
+                <input type="text" aria-label="mail from" class="form-control" ng-model="mailData.from">
+            </div>
+
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <label class="input-group-text">To</label>
+                </div>
+                <input type="text" aria-label="mail to" class="form-control" ng-model="mailData.to">
+            </div>
+
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <label class="input-group-text">CC</label>
+                </div>
+                <input type="text" aria-label="mail cc" class="form-control" ng-model="mailData.cc">
+            </div>
+
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <label class="input-group-text">BCC</label>
+                </div>
+                <input type="text" aria-label="mail bcc" class="form-control" ng-model="mailData.bcc">
+            </div>
+
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <label class="input-group-text">Subject</label>
+                </div>
+                <input type="text" aria-label="mail subject" class="form-control" ng-model="mailData.subject">
+            </div>
+
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <label class="input-group-text">Text</label>
+                </div>
+                <textarea class="form-control" ng-model="mailData.text" rows="3"></textarea>
+            </div>
+            <button class="btn" type="button" ng-click="Send()">Send</button>
+        </form>
+        <p></p>
+        <label>History:</label>
+        <ul class="list-group">
+            <li class="list-group-item d-flex justify-content-between align-items-center" ng-repeat="item in history">
+                {{$index}} {{item}}
+            </li>
+        </ul>
+    </div>
+
+</div>
