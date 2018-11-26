@@ -29,3 +29,34 @@ describe("test add sender", function() {
 
     });
 });
+
+describe("test add sender", function() {    
+    it("normal", function() {
+        let token = sessions.create();
+        mailsCtrl.updateSenders(token, [
+            {
+                name: "SendGrid", 
+                "apiKey": "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",
+                "domain": null
+            }
+        ], function(code, result) {
+            expect(code).equal(200);
+            let content = sessions.getContent(token);
+            let obj = {
+                senders: content.senders,
+                mail: {
+                    from: "Kai<leonkaihao@somewhere.com>",
+                    to: "leonkaihao@gmail.com",
+                    cc: "",
+                    bcc: "",
+                    subject: "hello",
+                    text: "test send interface"
+                }
+            }
+            mails.send(obj, function(err, results) {
+                expect(err).to.be.null;
+            })
+        });
+
+    });
+});

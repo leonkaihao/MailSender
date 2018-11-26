@@ -29,7 +29,7 @@ var mails = exports = module.exports = {
     send: function (obj, cb) {
         let self = this;
         async.eachOfSeries(obj.senders, function (sender, key, callback) {
-            for (provider in self.providers) {
+            for (let provider in self.providers) {
                 if (provider.name === sender.name) {
                     provider.func(obj.mail, function (err, info) {
                         if (!err) {
