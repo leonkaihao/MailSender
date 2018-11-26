@@ -30,7 +30,7 @@ describe("test add sender", function() {
     });
 });
 
-describe("test add sender", function() {    
+describe("test send mail", function() {    
     it("normal", function() {
         let token = sessions.create();
         mailsCtrl.updateSenders(token, [
@@ -55,6 +55,7 @@ describe("test add sender", function() {
             }
             mails.send(obj, function(err, results) {
                 expect(err).to.be.null;
+                expect(results.length).to.be.equal(1);
             })
         });
 
